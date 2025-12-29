@@ -1,0 +1,34 @@
+<app-cabecalho-caixa />
+<div class="layout">
+  <section class="esquerda">
+    <app-lista-itens-carrinho />
+  </section>
+  <aside class="direita">
+    <app-formulario-produto />
+    <app-total-carrinho />
+  </aside>
+</div>
+<app-acoes-caixa
+  (iniciarCompra)="iniciarCompra()"
+  (finalizarCompra)="abrirFinalizarCompraModal()"
+  (gerenciarProdutos)="abrirGerenciarProdutosModal()"
+/>
+@if(finalizarCompraModalAberto()) {
+  <app-finalizar-compra-modal
+    (fecharFinalizarCompraModal)="fecharFinalizarCompraModal()"
+    (concluirCompra)="concluirCompra($event)"
+  />
+}
+@if(gerenciarProdutosModalAberto()) {
+  <app-gerenciar-produtos-modal
+    (fecharGerenciarProdutosModal)="fecharGerenciarProdutosModal()"
+    [produtosCadastrados]="produtosCadastrados()"
+  />
+}
+@if(mensagemToast()) {
+  <app-mensagem-toast
+    [tipoToast]="tipoToast()"
+    [mensagemToast]="mensagemToast()"
+    (fecharToast)="fecharConcluirCompra()"
+  />
+}

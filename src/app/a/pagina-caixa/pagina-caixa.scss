@@ -1,0 +1,33 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+}
+.esquerda {
+  flex: 2;
+}
+.direita {
+  flex: 1;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  padding: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .esquerda {
+    flex: 2;
+  }
+  .direita {
+    flex: 1;
+  }
+}

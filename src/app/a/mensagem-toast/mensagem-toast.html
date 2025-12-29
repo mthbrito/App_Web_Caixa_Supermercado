@@ -1,0 +1,5 @@
+<div class="toast" [class.sucesso]="tipoToast() === 'sucesso'" [class.erro]="tipoToast() === 'erro'">
+  <span class="mensagem"> {{ mensagemToast() }} </span>
+  <button class="fechar" (click)="onFecharManual()">×</button>
+</div>
+

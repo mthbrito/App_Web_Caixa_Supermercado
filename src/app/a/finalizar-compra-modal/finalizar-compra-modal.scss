@@ -1,0 +1,124 @@
+/* Backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal */
+.modal-finalizar {
+  width: 700px;
+  max-width: 95%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.modal-header {
+  background: linear-gradient(135deg, #2b5fd9, #3f7cff);
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.btn-fechar {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Body */
+.modal-body {
+  padding: 20px;
+}
+
+.modal-body .titulo {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+/* Formas de pagamento */
+.formas-pagamento {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.forma {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.forma:hover {
+  border-color: #3f7cff;
+  background: #eef3ff;
+}
+
+.forma.ativo{
+  border-color: #2ecc71;
+  background: #eafaf1;
+}
+
+.icone {
+  font-size: 26px;
+}
+
+/* Footer */
+.modal-footer {
+  padding: 16px 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  background: #f5f5f5;
+}
+
+/* Botões */
+button {
+  border-radius: 6px;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-secundario {
+  background: #d1d5db;
+}
+
+.btn-primario {
+  background: #2ecc71;
+  color: #fff;
+}
+
+.btn-primario button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-nota {
+  background: #2b5fd9;
+  color: #fff;
+}

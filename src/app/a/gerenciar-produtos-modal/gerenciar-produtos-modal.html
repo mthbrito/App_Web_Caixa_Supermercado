@@ -1,0 +1,166 @@
+<div class="modal-backdrop">
+  <div class="modal-gerenciar-produtos">
+    <div class="modal-header">
+      <h2>Gerenciar Produtos</h2>
+      <button
+        type="button"
+        class="btn-fechar"
+        aria-label="Fechar modal"
+        (click)="onFecharGerenciarProdutosModal()"
+      >
+        ✕
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #form="ngForm" class="gerenciar-produtos-form">
+        <h3>
+          {{
+            modoFormulario() === "CRIAR" ? "Adicionar Produto" : "Editar Produto"
+          }}
+        </h3>
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input
+            id="nome"
+            type="text"
+            name="nome"
+            required
+            [(ngModel)]="nomeProduto"
+          />
+        </div>
+        <div class="form-group">
+          <label for="preco">Preço</label>
+          <input
+            id="preco"
+            type="number"
+            name="preco"
+            min="0"
+            step="0.01"
+            required
+            [(ngModel)]="precoProduto"
+          />
+        </div>
+        <div class="form-group">
+          <label for="unidade">Unidade</label>
+          <select
+            id="unidade"
+            name="unidade"
+            required
+            [(ngModel)]="unidadeProduto"
+          >
+            <option value="UN">UN</option>
+            <option value="KG">KG</option>
+            <option value="L">L</option>
+            <option value="CX">CX</option>
+            <option value="PCT">PCT</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button
+            type="button"
+            class="btn-primario"
+            [disabled]="form.invalid"
+            (click)="onSalvarProduto()"
+          >
+            {{ modoFormulario() === "CRIAR" ? "Adicionar" : "Salvar Alterações" }}
+          </button>
+
+          @if(modoFormulario() === 'EDITAR') {<button
+            type="button"
+            class="btn-secundario"
+            (click)="onCancelarEdicao()"
+          >
+            Cancelar</button
+          >}
+        </div>
+      </form>
+
+      <div class="tabela-container">
+        <table class="tabela-produtos">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Preço</th>
+              <th>Unidade</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (produto of produtosCadastrados(); track produto.id) {
+            <tr
+              (click)="onSelecionarProduto(produto)"
+              [class.selecionado]="produto.id === produtoSelecionado()?.id"
+            >
+              <td>{{ produto.id }}</td>
+              <td>{{ produto.nome }}</td>
+              <td>{{ produto.preco | currency : "BRL" }}</td>
+              <td>{{ produto.unidade }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn-remover"
+                  (click)="
+                    onRemoverProduto(produto.id); $event.stopPropagation()
+                  "
+                >
+                  ❌
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="modal-backdrop">
+  <div class="modal-finalizar">
+    <div class="modal-header">
+      <h2>Gerenciar Produtos</h2>
+      <button class="btn-fechar">
+        ✕
+      </button>
+    </div>
+    <div class="modal-body">
+      <button type="button" class="btn-primario" (click)="adicionarNovoProduto()">Adicionar novo produto</button>
+      <button type="button" class="btn-secundario" (click)="atualizarProduto()">Atualizar produto</button>
+      <form #form="ngForm" class="gerenciar-produtos-form">
+        <input type="text" name="nomeProduto" placeholder="Nome" [(ngModel)]="nomeProduto" />
+        <input type="number" name="precoProduto" placeholder="Preço" [(ngModel)]="precoProduto" />
+        <select name="unidade" id="unidade" [(ngModel)]="unidadeProduto">
+          <option value="un">UN</option>
+          <option value="kg">KG</option>
+          <option value="l">L</option>
+          <option value="cx">CX</option>
+          <option value="pct">PCT</option>
+        </select>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Unidade</th>
+            <th>Remover</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of sharedService.produtos(); track item.id) {
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.preco | currency : "BRL" }}</td>
+            <td>{{ item.unidade }}</td>
+            <td><button (click)="removerProduto()">X</button></td>
+          </tr>
+          }
+
+        </tbody>
+      </table>
+    </div>
+</div> -->

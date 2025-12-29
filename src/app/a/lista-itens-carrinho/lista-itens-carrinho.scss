@@ -1,0 +1,61 @@
+/* === LISTA DE ITENS DA COMPRA === */
+
+.lista-itens-compra {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.titulo-itens {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.tabela-container {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabela-itens {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tabela-itens th,
+.tabela-itens td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabela-itens th {
+  background-color: #ecf0f1;
+  text-align: left;
+}
+
+.linha-item:hover {
+  background-color: #f9f9f9;
+}
+
+.estado-vazio {
+  text-align: center;
+  color: #999;
+  padding: 1rem;
+}
+
+.btn-remover {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-remover:hover {
+  background-color: #c0392b;
+}
