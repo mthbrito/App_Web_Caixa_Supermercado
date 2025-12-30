@@ -9,5 +9,5 @@ import { PaginaCaixa } from "./a/pagina-caixa/pagina-caixa";
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('app-web-caixa-supermercado');
+  protected readonly title = signal('Caixa Supermercado');
 }

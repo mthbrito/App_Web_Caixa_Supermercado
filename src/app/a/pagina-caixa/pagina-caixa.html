@@ -21,6 +21,8 @@
 }
 @if(gerenciarProdutosModalAberto()) {
   <app-gerenciar-produtos-modal
+    (salvarProduto)="salvarProduto($event.produto); modoFormulario.set($event.modo)"
+    (removerProduto)="removerProduto($event)"
     (fecharGerenciarProdutosModal)="fecharGerenciarProdutosModal()"
     [produtosCadastrados]="produtosCadastrados()"
   />

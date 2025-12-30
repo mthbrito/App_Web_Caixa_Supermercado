@@ -10,16 +10,30 @@ import { Produto } from '../../model/produto';
   styleUrl: './gerenciar-produtos-modal.scss',
 })
 export class GerenciarProdutosModal {
-  // modoFormulario = input<'CRIAR' | 'EDITAR'>();
-  // produtoSelecionado = input<Produto | null>();
   modoFormulario = signal<'CRIAR' | 'EDITAR'>('CRIAR');
   produtoSelecionado = signal<Produto | null>(null);
   nomeProduto = signal<string>('');
   precoProduto = signal<number | null>(null);
   unidadeProduto = signal<string>('');
+  salvarProduto = output<{ produto: Produto; modo: 'CRIAR' | 'EDITAR' }>();
+  removerProduto = output<number>();
 
-  onRemoverProduto(arg0: any) {
-    throw new Error('Method not implemented.');
+  onSalvarProduto() {
+    const produto: Produto = {
+      id: this.produtoSelecionado()?.id,
+      nome: this.nomeProduto(),
+      preco: this.precoProduto()!,
+      unidade: this.unidadeProduto(),
+    };
+
+    this.salvarProduto.emit({
+      produto,
+      modo: this.modoFormulario(),
+    });
+  }
+
+  onRemoverProduto(id: number) {
+    this.removerProduto.emit(id);
   }
 
   onSelecionarProduto(produto: Produto) {
@@ -38,25 +52,9 @@ export class GerenciarProdutosModal {
     this.precoProduto.set(null);
     this.unidadeProduto.set('');
   }
-  onSalvarProduto() {
-    throw new Error('Method not implemented.');
-  }
-
-  onFechar() {
-    throw new Error('Method not implemented.');
-  }
-  atualizarProduto() {
-    throw new Error('Method not implemented.');
-  }
-  adicionarNovoProduto() {
-    throw new Error('Method not implemented.');
-  }
 
   fecharGerenciarProdutosModal = output<void>();
   onFecharGerenciarProdutosModal() {
     this.fecharGerenciarProdutosModal.emit();
-  }
-  salvarProdutos() {
-    throw new Error('Method not implemented.');
   }
 }

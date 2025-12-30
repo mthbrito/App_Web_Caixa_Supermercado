@@ -102,7 +102,7 @@
                   type="button"
                   class="btn-remover"
                   (click)="
-                    onRemoverProduto(produto.id); $event.stopPropagation()
+                    onRemoverProduto(produto.id!); $event.stopPropagation()
                   "
                 >
                   ❌

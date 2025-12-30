@@ -1,10 +1,14 @@
 /* === BOTÕES DE AÇÃO === */
 
 .acoes-caixa-container {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
 }
 
 .btn {
@@ -16,26 +20,20 @@
   transition: background-color 0.3s ease;
 }
 
-.btn-primary { background-color:#16a34a; color: #fff; }
-.btn-danger { background-color: #dc2626; color: #fff; }
-.btn-secondary { background-color: #2563eb; color: #fff; }
+.btn-primary {
+  background-color: #16a34a;
+  color: #fff;
+}
+.btn-danger {
+  background-color: #dc2626;
+  color: #fff;
+}
+.btn-secondary {
+  background-color: #2563eb;
+  color: #fff;
+}
 
-.btn:hover { opacity: 0.9; }
-
-
-// .acoes-caixa-container .btn-action {
-//   margin: 0.5rem;
-//   padding: 0.75rem 1.5rem;
-//   font-size: 1rem;
-//   border: none;
-//   border-radius: 6px;
-//   cursor: pointer;
-//   background-color: #3498db;
-//   color: #fff;
-//   transition: background-color 0.3s ease, transform 0.2s ease;
-// }
-
-// .acoes-caixa-container .btn-action:hover {
-//   background-color: #2980b9;
-//   transform: scale(1.05);
-// }
+.btn:hover {
+  opacity: 0.8;
+  translate: 0 -2px;
+}

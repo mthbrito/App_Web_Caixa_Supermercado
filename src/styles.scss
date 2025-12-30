@@ -1,0 +1,10 @@
+html, body {
+  height: 100%;
+  overflow: hidden; /* impede scroll externo */
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

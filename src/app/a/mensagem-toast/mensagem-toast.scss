@@ -1,12 +1,13 @@
 .toast {
   position: fixed;
-  bottom: 24px;
+  bottom: 240px;
   left: 50%;
   transform: translateX(-50%);
   min-width: 280px;
   max-width: 420px;
   padding: 14px 18px;
   border-radius: 8px;
+  border: 1px solid #fff;
   color: #fff;
   font-weight: 500;
   display: flex;
