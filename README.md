@@ -1,59 +1,36 @@
-# AppWebCaixaSupermercado
+## 🛒 Caixa de Supermercado – Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.0.
+Esta é a interface web da aplicação Caixa de Supermercado, desenvolvida com **Angular**.
+O sistema simula um caixa (PDV), permitindo a adição de produtos por código,
+visualização dos itens da compra, cálculo do total, finalização da venda e gerenciamento de produtos.
 
-## Development server
+A aplicação consome uma **API REST** para obter produtos e registrar vendas,
+mantendo a lógica de negócio no backend.
 
-To start a local development server, run:
+## 🚀 Funcionalidades
 
-```bash
-ng serve
-```
+- Adição de produtos por código
+- Listagem dos itens da compra
+- Cálculo automático do valor total
+- Remoção de itens da compra
+- Início e finalização de vendas
+- Acesso à tela de gerenciamento de produtos
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 💻 Tecnologias Utilizadas
 
-## Code scaffolding
+- Angular
+- TypeScript
+- HTML5
+- SCSS
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Exemplo
+![Caixa de Supermercado](https://github.com/mthbrito/App_Web_Caixa_Supermercado/blob/main/Caixa%20de%20Supermercado.gif)
+  
+## Etiquetas
 
-```bash
-ng generate component component-name
-```
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
-```bash
-ng generate --help
-```
+[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
