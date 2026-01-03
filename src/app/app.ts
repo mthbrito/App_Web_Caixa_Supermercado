@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PaginaCaixa } from "./a/pagina-caixa/pagina-caixa";
+import { PaginaCaixa } from "./caixa/pagina-caixa/pagina-caixa";
 
 @Component({
   selector: 'app-root',
