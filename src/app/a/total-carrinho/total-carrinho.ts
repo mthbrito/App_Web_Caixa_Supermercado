@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { CartService } from '../../shared/cart-service';
+import { Component, computed } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+import { CarrinhoService } from '../../service/carrinho-service';
 
 @Component({
   selector: 'app-total-carrinho',
@@ -9,5 +9,6 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './total-carrinho.scss',
 })
 export class TotalCarrinho {
-  constructor(public cartService: CartService) {}
+  readonly total = computed(() => this.carrinhoService.total());
+  constructor(public carrinhoService: CarrinhoService) {}
 }

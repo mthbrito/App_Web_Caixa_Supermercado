@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { CartService } from '../../shared/cart-service';
+import { Component, computed } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+import { CarrinhoService } from '../../service/carrinho-service';
 
 @Component({
   selector: 'app-lista-itens-carrinho',
@@ -9,5 +9,9 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './lista-itens-carrinho.scss',
 })
 export class ListaItensCarrinho {
-  constructor(public cartService: CartService) {}
+  readonly produtos = computed(() => this.carrinhoService.listaProdutos());
+  constructor(private carrinhoService: CarrinhoService) {}
+  removerProduto(indice: number): void {
+    this.carrinhoService.removerProduto(indice);
+  }
 }

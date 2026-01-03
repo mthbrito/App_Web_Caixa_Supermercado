@@ -7,28 +7,28 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProdutoService {
-  
+
   private apiUrl = 'http://localhost:8080/api/mercado/produtos';
 
   constructor(private http: HttpClient) {}
 
-  postProduto(produto: Produto): Observable<Produto> {
+  public salvarProduto(produto: Produto): Observable<Produto> {
     return this.http.post<Produto>(this.apiUrl, produto);
   }
 
-  getProduto(id: number): Observable<Produto> {
+  public buscarProdutoPorId(id: number): Observable<Produto> {
     return this.http.get<Produto>(`${this.apiUrl}/${id}`);
   }
 
-  putProduto(id: number, produto: Produto): Observable<Produto> {
+  public listarProdutos(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(this.apiUrl);
+  }
+
+  public atualizarProduto(id: number, produto: Produto): Observable<Produto> {
     return this.http.put<Produto>(`${this.apiUrl}/${id}`, produto);
   }
 
-  deleteProduto(id: number): Observable<void> {
+  public removerProduto(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
-
-  getProdutos(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this.apiUrl);
   }
 }

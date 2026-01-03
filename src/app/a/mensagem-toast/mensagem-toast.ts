@@ -7,13 +7,7 @@ import { Component, input, output } from '@angular/core';
   styleUrl: './mensagem-toast.scss',
 })
 export class MensagemToast {
-
-  tipoToast = input<'sucesso' | 'erro'>();
-  mensagemToast = input<string>();
-
-  fecharToast = output<void>();
-
-  public onFecharManual(): void {
-    this.fecharToast.emit();
-  }
+  tipo = input<'sucesso' | 'erro'>('sucesso');
+  mensagem = input.required<string>();
+  fechar = output<void>();
 }

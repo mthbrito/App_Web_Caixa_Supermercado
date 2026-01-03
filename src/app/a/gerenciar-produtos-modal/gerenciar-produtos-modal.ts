@@ -1,4 +1,4 @@
-import { Component, output, signal, input } from '@angular/core';
+import { Component, output, signal, input, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
 import { Produto } from '../../model/produto';
@@ -10,51 +10,39 @@ import { Produto } from '../../model/produto';
   styleUrl: './gerenciar-produtos-modal.scss',
 })
 export class GerenciarProdutosModal {
-  modoFormulario = signal<'CRIAR' | 'EDITAR'>('CRIAR');
-  produtoSelecionado = signal<Produto | null>(null);
-  nomeProduto = signal<string>('');
-  precoProduto = signal<number | null>(null);
-  unidadeProduto = signal<string>('');
-  salvarProduto = output<{ produto: Produto; modo: 'CRIAR' | 'EDITAR' }>();
-  removerProduto = output<number>();
-
-  onSalvarProduto() {
-    const produto: Produto = {
-      id: this.produtoSelecionado()?.id,
-      nome: this.nomeProduto(),
-      preco: this.precoProduto()!,
-      unidade: this.unidadeProduto(),
-    };
-
-    this.salvarProduto.emit({
-      produto,
-      modo: this.modoFormulario(),
-    });
-  }
-
-  onRemoverProduto(id: number) {
-    this.removerProduto.emit(id);
-  }
-
-  onSelecionarProduto(produto: Produto) {
-    if (!produto) return;
-    this.produtoSelecionado.set(produto);
-    this.modoFormulario.set('EDITAR');
-    this.nomeProduto.set(produto.nome);
-    this.precoProduto.set(produto.preco);
-    this.unidadeProduto.set(produto.unidade);
-  }
   produtosCadastrados = input<Produto[]>();
-  onCancelarEdicao() {
-    this.modoFormulario.set('CRIAR');
-    this.produtoSelecionado.set(null);
-    this.nomeProduto.set('');
-    this.precoProduto.set(null);
-    this.unidadeProduto.set('');
+  produtoEmEdicao = signal<Produto | null>(null);
+  nome = '';
+  preco: number | null = null;
+  unidade = '';
+  modoFormulario = computed(() =>
+    this.produtoEmEdicao() ? 'EDITAR' : 'CRIAR'
+  );
+  confirmar = output<Produto>();
+  remover = output<number>();
+  fechar = output<void>();
+
+  confirmarProduto() {
+    const produto: Produto = {
+      id: this.produtoEmEdicao()?.id,
+      nome: this.nome,
+      preco: this.preco!,
+      unidade: this.unidade,
+    };
+    this.confirmar.emit(produto);
   }
 
-  fecharGerenciarProdutosModal = output<void>();
-  onFecharGerenciarProdutosModal() {
-    this.fecharGerenciarProdutosModal.emit();
+  editarProduto(produto: Produto) {
+    this.produtoEmEdicao.set(produto);
+    this.nome = produto.nome;
+    this.preco = produto.preco;
+    this.unidade = produto.unidade;
+  }
+
+  cancelarEdicao() {
+    this.produtoEmEdicao.set(null);
+    this.nome = '';
+    this.preco = null;
+    this.unidade = '';
   }
 }

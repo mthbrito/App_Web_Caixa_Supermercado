@@ -14,14 +14,14 @@
         </tr>
       </thead>
       <tbody>
-        @if (cartService.listaProdutos().length === 0) {
+        @if (produtos().length === 0) {
           <tr>
             <td colspan="5" class="estado-vazio">
               Nenhum item na compra.
             </td>
           </tr>
         } @else {
-          @for (produto of cartService.listaProdutos(); track $index) {
+          @for (produto of produtos(); track produto.id) {
             <tr class="linha-item">
               <td>{{ $index + 1 }}</td>
               <td>{{ produto.id }}</td>
@@ -32,7 +32,8 @@
               <td class="text-right">
                 <button
                   class="btn-remover"
-                  (click)="cartService.removerProduto($index)">
+                  aria-label="Remover produto do carrinho"
+                  (click)="removerProduto($index)">
                   Remover
                 </button>
               </td>

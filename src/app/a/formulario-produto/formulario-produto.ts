@@ -2,39 +2,40 @@ import { FormsModule } from '@angular/forms';
 import { Component, signal } from '@angular/core';
 import { Produto } from '../../model/produto';
 import { ProdutoService } from '../../service/produto-service';
-import { CartService } from '../../shared/cart-service';
 import { CurrencyPipe } from '@angular/common';
-import { VendaService } from '../../shared/venda-service';
+import { CaixaService } from '../../service/caixa-service';
+import { CarrinhoService } from '../../service/carrinho-service';
 
 @Component({
   selector: 'app-formulario-produto',
-  imports: [FormsModule,CurrencyPipe],
+  imports: [FormsModule, CurrencyPipe],
   templateUrl: './formulario-produto.html',
   styleUrl: './formulario-produto.scss',
 })
 export class FormularioProduto {
   constructor(
-    public vendaService: VendaService,
+    public caixaService: CaixaService,
     private produtoService: ProdutoService,
-    private cartService: CartService
+    private carrinhoService: CarrinhoService
   ) {}
 
   codigoProduto = signal<number | null>(null);
   produto = signal<Produto | null>(null);
 
-  public buscarProduto(valor: number | null): void {
-    this.codigoProduto.set(valor);
-    this.produto.set(null);
-    if (!valor) return;
-    this.produtoService.getProduto(valor).subscribe({
-      next: (produto) => this.produto.set(produto),
+  buscarProduto(codigo: number | null): void {
+    if (!codigo) {
+      this.produto.set(null);
+      return;
+    }
+    this.produtoService.buscarProdutoPorId(codigo).subscribe({
+      next: this.produto.set,
       error: () => this.produto.set(null),
     });
   }
 
-  public adicionarProduto(): void {
-    this.cartService.adicionarProduto(this.produto()!);
-    console.table(this.cartService.listaProdutos());
+  adicionarProduto(): void {
+    this.carrinhoService.adicionarProduto(this.produto()!);
+    console.table(this.carrinhoService.listaProdutos());
     this.codigoProduto.set(null);
     this.produto.set(null);
   }

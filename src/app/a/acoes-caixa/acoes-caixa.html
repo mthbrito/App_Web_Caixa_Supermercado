@@ -1,13 +1,13 @@
 <div class="acoes-caixa-container">
-  <button class="btn btn-primary" type="button" (click)="onIniciarCompra()">
+  <button class="btn btn-primary" type="button" aria-label="Iniciar compra" (click)="iniciarCompra.emit()">
     <i class="ph ph-plus-circle text-3xl"></i>
     Iniciar Compra
   </button>
-  <button class="btn btn-danger" type="button" (click)="onFinalizarCompra()">
+  <button class="btn btn-danger" type="button" aria-label="Finalizar compra" (click)="finalizarCompra.emit()">
     <i class="ph ph-check-circle text-3xl"></i>
     Finalizar Compra
   </button>
-  <button class="btn btn-secondary" type="button" (click)="onGerenciarProdutos()">
+  <button class="btn btn-secondary" type="button" aria-label="Gerenciar compra" (click)="gerenciarProdutos.emit()">
     <i class="ph ph-list-magnifying-glass text-3xl"></i>
     Gerenciar Produtos
   </button>

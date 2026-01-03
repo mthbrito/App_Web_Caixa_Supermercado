@@ -3,10 +3,10 @@
     <div class="modal-header">
       <h2>Gerenciar Produtos</h2>
       <button
-        type="button"
         class="btn-fechar"
+        type="button"
         aria-label="Fechar modal"
-        (click)="onFecharGerenciarProdutosModal()"
+        (click)="fechar.emit()"
       >
         ✕
       </button>
@@ -15,39 +15,36 @@
       <form #form="ngForm" class="gerenciar-produtos-form">
         <h3>
           {{
-            modoFormulario() === "CRIAR" ? "Adicionar Produto" : "Editar Produto"
+            modoFormulario() === "CRIAR"
+              ? "Adicionar Produto"
+              : "Editar Produto"
           }}
         </h3>
         <div class="form-group">
           <label for="nome">Nome</label>
           <input
             id="nome"
-            type="text"
             name="nome"
+            type="text"
             required
-            [(ngModel)]="nomeProduto"
+            [(ngModel)]="nome"
           />
         </div>
         <div class="form-group">
           <label for="preco">Preço</label>
           <input
             id="preco"
-            type="number"
             name="preco"
+            type="number"
             min="0"
             step="0.01"
             required
-            [(ngModel)]="precoProduto"
+            [(ngModel)]="preco"
           />
         </div>
         <div class="form-group">
           <label for="unidade">Unidade</label>
-          <select
-            id="unidade"
-            name="unidade"
-            required
-            [(ngModel)]="unidadeProduto"
-          >
+          <select id="unidade" name="unidade" required [(ngModel)]="unidade">
             <option value="UN">UN</option>
             <option value="KG">KG</option>
             <option value="L">L</option>
@@ -57,18 +54,21 @@
         </div>
         <div class="form-actions">
           <button
-            type="button"
             class="btn-primario"
+            type="button"
             [disabled]="form.invalid"
-            (click)="onSalvarProduto()"
+            (click)="confirmarProduto()"
           >
-            {{ modoFormulario() === "CRIAR" ? "Adicionar" : "Salvar Alterações" }}
+            {{
+              modoFormulario() === "CRIAR" ? "Adicionar" : "Salvar Alterações"
+            }}
           </button>
 
-          @if(modoFormulario() === 'EDITAR') {<button
+          @if(modoFormulario() === 'EDITAR') {
+          <button
             type="button"
             class="btn-secundario"
-            (click)="onCancelarEdicao()"
+            (click)="cancelarEdicao()"
           >
             Cancelar</button
           >}
@@ -90,8 +90,8 @@
           <tbody>
             @for (produto of produtosCadastrados(); track produto.id) {
             <tr
-              (click)="onSelecionarProduto(produto)"
-              [class.selecionado]="produto.id === produtoSelecionado()?.id"
+              (click)="editarProduto(produto)"
+              [class.selecionado]="produto.id === produtoEmEdicao()?.id"
             >
               <td>{{ produto.id }}</td>
               <td>{{ produto.nome }}</td>
@@ -101,9 +101,7 @@
                 <button
                   type="button"
                   class="btn-remover"
-                  (click)="
-                    onRemoverProduto(produto.id!); $event.stopPropagation()
-                  "
+                  (click)="remover.emit(produto.id!); $event.stopPropagation()"
                 >
                   ❌
                 </button>
@@ -116,51 +114,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="modal-backdrop">
-  <div class="modal-finalizar">
-    <div class="modal-header">
-      <h2>Gerenciar Produtos</h2>
-      <button class="btn-fechar">
-        ✕
-      </button>
-    </div>
-    <div class="modal-body">
-      <button type="button" class="btn-primario" (click)="adicionarNovoProduto()">Adicionar novo produto</button>
-      <button type="button" class="btn-secundario" (click)="atualizarProduto()">Atualizar produto</button>
-      <form #form="ngForm" class="gerenciar-produtos-form">
-        <input type="text" name="nomeProduto" placeholder="Nome" [(ngModel)]="nomeProduto" />
-        <input type="number" name="precoProduto" placeholder="Preço" [(ngModel)]="precoProduto" />
-        <select name="unidade" id="unidade" [(ngModel)]="unidadeProduto">
-          <option value="un">UN</option>
-          <option value="kg">KG</option>
-          <option value="l">L</option>
-          <option value="cx">CX</option>
-          <option value="pct">PCT</option>
-        </select>
-      </form>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Unidade</th>
-            <th>Remover</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (item of sharedService.produtos(); track item.id) {
-          <tr>
-            <td>{{ item.id }}</td>
-            <td>{{ item.nome }}</td>
-            <td>{{ item.preco | currency : "BRL" }}</td>
-            <td>{{ item.unidade }}</td>
-            <td><button (click)="removerProduto()">X</button></td>
-          </tr>
-          }
-
-        </tbody>
-      </table>
-    </div>
-</div> -->

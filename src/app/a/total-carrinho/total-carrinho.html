@@ -1,6 +1,6 @@
-<div class="cart-total">
-  <label for="display-total-compra"> TOTAL DA COMPRA </label>
+<div class="total-carrinho">
+  <span class="label-total-compra">TOTAL DA COMPRA</span>
   <div id="display-total-compra">
-    {{ cartService.total() | currency : "BRL" : "symbol" : "1.2-2" }}
+    {{ total() | currency : "BRL" : "symbol" : "1.2-2" }}
   </div>
 </div>

@@ -1,34 +1,33 @@
 <form #form="ngForm" class="form-produto">
-  <fieldset [disabled]="!vendaService.vendaIniciada()">
+  <fieldset [disabled]="!caixaService.compraIniciada()">
     <div class="campo-form">
       <label for="input-codigo-produto">Código do Produto</label>
       <input
         id="input-codigo-produto"
         name="input-codigo-produto"
-        type="text"
-        [(ngModel)]="codigoProduto"
-        (ngModelChange)="buscarProduto($event)"
+        type="number"
+        min="0"
         placeholder="Digite o código"
+        (ngModelChange)="buscarProduto($event)"
+        [(ngModel)]="codigoProduto"
       />
     </div>
-
     <div class="campo-form">
       <label>Produto</label>
       <div class="campo-display">{{ produto()?.nome }}</div>
     </div>
-
     <div class="campo-form">
       <label>Preço</label>
       <div class="campo-display preco">
         {{ produto()?.preco | currency : "BRL" }}
       </div>
     </div>
-
     <button
-      type="button"
       class="btn-adicionar"
+      type="button"
       [disabled]="!produto()"
-      (click)="adicionarProduto()">
+      (click)="adicionarProduto()"
+    >
       Adicionar
     </button>
   </fieldset>

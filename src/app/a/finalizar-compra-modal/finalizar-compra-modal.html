@@ -2,7 +2,12 @@
   <div class="modal-finalizar">
     <div class="modal-header">
       <h2>Finalizar Compra</h2>
-      <button (click)="onFecharFinalizarCompraModal()" class="btn-fechar">
+      <button
+        class="btn-fechar"
+        type="button"
+        aria-label="Fechar modal"
+        (click)="fechar.emit()"
+      >
         ✕
       </button>
     </div>
@@ -11,41 +16,49 @@
       <div class="formas-pagamento">
         <button
           class="forma"
-          (click)="selecionarFormaPagamento(FormaPagamento.PIX)"
+          type="button"
           [class.ativo]="formaPagamento() === FormaPagamento.PIX"
+          (click)="selecionar(FormaPagamento.PIX)"
         >
           <span class="icone">💠</span>
           <span>PIX</span>
         </button>
-
         <button
           class="forma"
-          (click)="selecionarFormaPagamento(FormaPagamento.A_VISTA)"
+          type="button"
           [class.ativo]="formaPagamento() === FormaPagamento.A_VISTA"
+          (click)="selecionar(FormaPagamento.A_VISTA)"
         >
           <span class="icone">💵</span>
           <span>À Vista</span>
         </button>
-
-        <button class="forma"
-          (click)="selecionarFormaPagamento(FormaPagamento.CREDITO)"
-          [class.ativo]="formaPagamento() === FormaPagamento.CREDITO">
+        <button
+          class="forma"
+          type="button"
+          [class.ativo]="formaPagamento() === FormaPagamento.CREDITO"
+          (click)="selecionar(FormaPagamento.CREDITO)"
+        >
           <span class="icone">💳</span>
           <span>Crédito</span>
         </button>
-
-        <button class="forma"
-          (click)="selecionarFormaPagamento(FormaPagamento.DEBITO)"
-          [class.ativo]="formaPagamento() === FormaPagamento.DEBITO">
+        <button
+          class="forma"
+          type="button"
+          [class.ativo]="formaPagamento() === FormaPagamento.DEBITO"
+          (click)="selecionar(FormaPagamento.DEBITO)"
+        >
           <span class="icone">🏧</span>
           <span>Débito</span>
         </button>
       </div>
     </div>
-
-    <!-- Footer -->
     <div class="modal-footer">
-      <button (click)="onConcluirCompra()" class="btn-primario concluir" [disabled]="!formaPagamento()">
+      <button
+        class="btn-primario concluir"
+        type="button"
+        [disabled]="!formaPagamento()"
+        (click)="confirmar()"
+      >
         Concluir Compra
       </button>
       <button class="btn-nota">Gerar Nota</button>

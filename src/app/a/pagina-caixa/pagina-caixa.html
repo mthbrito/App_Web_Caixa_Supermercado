@@ -9,28 +9,26 @@
   </aside>
 </div>
 <app-acoes-caixa
-  (iniciarCompra)="iniciarCompra()"
-  (finalizarCompra)="abrirFinalizarCompraModal()"
-  (gerenciarProdutos)="abrirGerenciarProdutosModal()"
+  (iniciarCompra)="facade.iniciarCompra()"
+  (finalizarCompra)="facade.abrirFinalizarCompraModal()"
+  (gerenciarProdutos)="facade.abrirGerenciarProdutosModal()"
 />
-@if(finalizarCompraModalAberto()) {
-  <app-finalizar-compra-modal
-    (fecharFinalizarCompraModal)="fecharFinalizarCompraModal()"
-    (concluirCompra)="concluirCompra($event)"
-  />
-}
-@if(gerenciarProdutosModalAberto()) {
-  <app-gerenciar-produtos-modal
-    (salvarProduto)="salvarProduto($event.produto); modoFormulario.set($event.modo)"
-    (removerProduto)="removerProduto($event)"
-    (fecharGerenciarProdutosModal)="fecharGerenciarProdutosModal()"
-    [produtosCadastrados]="produtosCadastrados()"
-  />
-}
-@if(mensagemToast()) {
-  <app-mensagem-toast
-    [tipoToast]="tipoToast()"
-    [mensagemToast]="mensagemToast()"
-    (fecharToast)="fecharConcluirCompra()"
-  />
+@if(facade.finalizarCompraModalAberto()) {
+<app-finalizar-compra-modal
+  (fechar)="facade.fecharFinalizarCompraModal()"
+  (concluir)="facade.concluirCompra($event)"
+/>
+} @if(facade.gerenciarProdutosModalAberto()) {
+<app-gerenciar-produtos-modal
+  (confirmar)="facade.salvarProduto($event)"
+  (remover)="facade.removerProduto($event)"
+  (fechar)="facade.fecharGerenciarProdutosModal()"
+  [produtosCadastrados]="facade.produtos()"
+/>
+} @if(facade.mensagemToast()) {
+<app-mensagem-toast
+  [mensagem]="facade.mensagemToast()!"
+  [tipo]="facade.tipoToast()"
+  (fechar)="facade.fecharToast()"
+/>
 }
